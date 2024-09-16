@@ -1,9 +1,7 @@
 #if UNITY_EDITOR
 
-
 using System;
 using System.IO;
-using SOSXR.EnhancedLogger;
 using UnityEditor;
 using UnityEngine;
 
@@ -19,10 +17,10 @@ public class AddValidateInterfaceToMonoBehaviours : EditorWindow
     private string selectedFolderPath;
 
 
-    [MenuItem("SOSXR/Add Interface to Scripts..")]
+    [MenuItem("SOSXR/Add IValidate Interface to Scripts..")]
     public static void ShowWindow()
     {
-        GetWindow<AddValidateInterfaceToMonoBehaviours>("Add Interface");
+        GetWindow<AddValidateInterfaceToMonoBehaviours>("Add IValidate Interface");
     }
 
 
@@ -53,7 +51,7 @@ public class AddValidateInterfaceToMonoBehaviours : EditorWindow
     {
         if (!directoryPath.StartsWith(Application.dataPath))
         {
-            Log.Error("The selected folder must be within the Assets directory.");
+            Debug.LogError("The selected folder must be within the Assets directory.");
 
             return;
         }
@@ -106,7 +104,7 @@ public class AddValidateInterfaceToMonoBehaviours : EditorWindow
 
             File.WriteAllText(scriptPath, scriptText);
 
-            Log.Success($"Modified {fileName}");
+            Debug.Log($"Modified {fileName}");
         }
 
         AssetDatabase.Refresh();

@@ -1,8 +1,9 @@
 #if UNITY_EDITOR
-using SOSXR.EnhancedLogger;
+
 using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
@@ -51,7 +52,7 @@ public class SceneBuildValidation : IProcessSceneWithReport
                 }
 
                 isValid = false;
-                Log.Error("SceneBuildValidation", "Detected Validation issue with", validator.GetType().Name);
+                Debug.LogError("SceneBuildValidation" + " Detected Validation issue with " + validator.GetType().Name);
             }
         }
 
