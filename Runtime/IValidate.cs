@@ -16,7 +16,7 @@ public interface IValidate
 public class ThisIsAValidationClass : MonoBehaviour, IValidate
 {
     public GameObject AnotherGameObject;
-    
+
     public bool IsValid { get; private set; }
 
 
