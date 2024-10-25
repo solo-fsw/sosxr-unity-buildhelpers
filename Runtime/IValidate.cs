@@ -1,27 +1,30 @@
 using UnityEngine;
 
 
-/// <summary>
-///     Add this to all scripts that require a validation step
-/// </summary>
-public interface IValidate
+namespace SOSXR.BuildHelpers
 {
-    bool IsValid { get; }
-
-
-    void OnValidate();
-}
-
-
-public class ThisIsAValidationClass : MonoBehaviour, IValidate
-{
-    public GameObject AnotherGameObject;
-
-    public bool IsValid { get; private set; }
-
-
-    public void OnValidate()
+    /// <summary>
+    ///     Add this to all scripts that require a validation step
+    /// </summary>
+    public interface IValidate
     {
-        IsValid = AnotherGameObject != null;
+        bool IsValid { get; }
+
+
+        void OnValidate();
+    }
+
+
+    public class ThisIsAValidationClass : MonoBehaviour, IValidate
+    {
+        public GameObject AnotherGameObject;
+
+        public bool IsValid { get; private set; }
+
+
+        public void OnValidate()
+        {
+            IsValid = AnotherGameObject != null;
+        }
     }
 }

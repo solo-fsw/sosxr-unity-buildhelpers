@@ -7,56 +7,59 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class SceneBuildValidation : IProcessSceneWithReport
+namespace SOSXR.BuildHelpers
 {
-    private static readonly bool RunOnlyOnBuilding = true;
-
-    /// <summary>
-    ///     The order in relationship to other IProcessSceneWithReport callbacks. Lower numbers are called first.
-    /// </summary>
-    public int callbackOrder => 0;
-
-
-    public void OnProcessScene(Scene scene, BuildReport report)
+    public class SceneBuildValidation : IProcessSceneWithReport
     {
-        if (!BuildPipeline.isBuildingPlayer && RunOnlyOnBuilding)
+        private static readonly bool RunOnlyOnBuilding = true;
+
+        /// <summary>
+        ///     The order in relationship to other IProcessSceneWithReport callbacks. Lower numbers are called first.
+        /// </summary>
+        public int callbackOrder => 0;
+
+
+        public void OnProcessScene(Scene scene, BuildReport report)
         {
-            return;
-        }
-
-        if (!AreAllSceneValidationComponentsValid(scene))
-        {
-            throw new BuildFailedException("Scene " + scene.name + " has validation errors");
-        }
-    }
-
-
-    private static bool AreAllSceneValidationComponentsValid(Scene scene)
-    {
-        var isValid = true;
-
-        foreach (var gameObject in scene.GetRootGameObjects())
-        {
-            var validators = gameObject.GetComponentsInChildren<IValidate>();
-
-            if (validators is not {Length: > 0})
+            if (!BuildPipeline.isBuildingPlayer && RunOnlyOnBuilding)
             {
-                continue;
+                return;
             }
 
-            foreach (var validator in validators)
+            if (!AreAllSceneValidationComponentsValid(scene))
             {
-                if (validator.IsValid)
+                throw new BuildFailedException("Scene " + scene.name + " has validation errors");
+            }
+        }
+
+
+        private static bool AreAllSceneValidationComponentsValid(Scene scene)
+        {
+            var isValid = true;
+
+            foreach (var gameObject in scene.GetRootGameObjects())
+            {
+                var validators = gameObject.GetComponentsInChildren<IValidate>();
+
+                if (validators is not {Length: > 0})
                 {
                     continue;
                 }
 
-                isValid = false;
-                Debug.LogError("SceneBuildValidation" + " Detected Validation issue with " + validator.GetType().Name);
-            }
-        }
+                foreach (var validator in validators)
+                {
+                    if (validator.IsValid)
+                    {
+                        continue;
+                    }
 
-        return isValid;
+                    isValid = false;
+                    Debug.LogError("SceneBuildValidation" + " Detected Validation issue with " + validator.GetType().Name);
+                }
+            }
+
+            return isValid;
+        }
     }
 }
 #endif

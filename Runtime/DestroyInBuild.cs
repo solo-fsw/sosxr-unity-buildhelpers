@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-namespace SOSXR.SimpleHelpers
+namespace SOSXR.BuildHelpers
 {
     public class DestroyInBuild : MonoBehaviour
     {
@@ -19,7 +19,7 @@ namespace SOSXR.SimpleHelpers
         }
 
 
-        private bool NeedsDestroying()
+        public bool NeedsDestroying()
         {
             return m_destroyInBuild && !Application.isEditor;
         }
