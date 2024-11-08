@@ -16,10 +16,10 @@ namespace SOSXR.BuildHelpers
     {
         private const string FilePath = "Assets/_SOSXR/Resources/build_info.csv";
         private const string InitialSemVer = "0_0_1";
-        
+
         private static string _oldSemVer;
         private static string _newSemVer;
-        
+
         private static int _oldBundleVersionCode; // Android only
         private static int _newBundleVersionCode; // Android only
 
@@ -60,7 +60,7 @@ namespace SOSXR.BuildHelpers
             if (parts.Length < 2 || !int.TryParse(parts[^1], out var currentNumber))
             {
                 var initialVersion = $"{InitialSemVer}{buildIndicator}";
-                
+
                 Debug.LogWarning($"[SemanticVersion] Invalid version format \"{version}\". " +
                                  $"Expected format like '0_0_0{buildIndicator}' or 'alpha-1_32_2{buildIndicator}'. Resetting to initial version {initialVersion}");
 
