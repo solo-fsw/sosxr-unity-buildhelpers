@@ -25,6 +25,8 @@ namespace SOSXR.BuildHelpers
 
         public int callbackOrder => 0;
 
+        private static readonly string _developmentBuildIndicator = "d";
+        private static readonly string _productionBuildIndicator = "p";
 
         public void OnPreprocessBuild(BuildReport report)
         {
@@ -52,8 +54,8 @@ namespace SOSXR.BuildHelpers
 
         private static string GenerateNextVersion(string version, bool increment)
         {
-            var buildIndicator = EditorUserBuildSettings.development ? "b" : "p";
-            version = version.TrimEnd('b', 'p'); // Remove build indicator if present
+            var buildIndicator = EditorUserBuildSettings.development ? _developmentBuildIndicator : _productionBuildIndicator;
+            version = version.TrimEnd(Convert.ToChar(_developmentBuildIndicator), Convert.ToChar(_productionBuildIndicator)); // Remove build indicator if present
 
             var parts = version.Split('_');
 

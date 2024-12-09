@@ -1,6 +1,6 @@
 {
   "name": "com.sosxr.buildhelpers",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "displayName": "Build Helpers",
   "description": "A collection of scripts that help with building Unity projects.",
   "unity": "2021.3",
