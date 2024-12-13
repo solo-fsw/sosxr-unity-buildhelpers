@@ -16,7 +16,8 @@ namespace SOSXR.BuildHelpers
             }
 
             Destroy(gameObject);
-        }
+        } 
+        
 
 
         public bool NeedsDestroying()
