@@ -23,6 +23,8 @@ namespace SOSXR.BuildHelpers
         public bool NeedsDestroying()
         {
             return m_destroyInBuild && !Application.isEditor;
+             
+            
         }
     }
 }
