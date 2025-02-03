@@ -16,15 +16,12 @@ namespace SOSXR.BuildHelpers
             }
 
             Destroy(gameObject);
-        } 
-        
+        }
 
 
         public bool NeedsDestroying()
         {
             return m_destroyInBuild && !Application.isEditor;
-             
-            
         }
     }
 }

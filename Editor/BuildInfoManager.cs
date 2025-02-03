@@ -23,10 +23,11 @@ namespace SOSXR.BuildHelpers
         private static int _oldBundleVersionCode; // Android only
         private static int _newBundleVersionCode; // Android only
 
-        public int callbackOrder => 0;
-
         private static readonly string _developmentBuildIndicator = "d";
         private static readonly string _productionBuildIndicator = "p";
+
+        public int callbackOrder => 0;
+
 
         public void OnPreprocessBuild(BuildReport report)
         {
