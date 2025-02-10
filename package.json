@@ -12,6 +12,13 @@
     "Build",
     "Helpers"
   ],
+  "samples": [
+    {
+      "displayName": "Samples",
+      "description": "Contains samples of this package",
+      "path": "Samples~/Samples"
+    }
+  ],
   "author": {
     "name": "SOSXR",
     "email": "sosxr@fsw.leidenuniv.nl",
